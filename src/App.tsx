@@ -1,10 +1,20 @@
+import { Routes, Route } from 'react-router-dom'
+import AppLayout from './layouts/AppLayout'
+import InicioPage from './pages/InicioPage'
+import MovimientosPage from './pages/MovimientosPage'
+import PresupuestosPage from './pages/PresupuestosPage'
+import MasPage from './pages/MasPage'
+
 function App() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <h1 className="text-4xl font-bold text-blue-600">
-        ¡Tailwind está funcionando!
-      </h1>
-    </div>
+    <Routes>
+      <Route element={<AppLayout />}>
+        <Route path="/" element={<InicioPage />} />
+        <Route path="/movimientos" element={<MovimientosPage />} />
+        <Route path="/presupuestos" element={<PresupuestosPage />} />
+        <Route path="/mas" element={<MasPage />} />
+      </Route>
+    </Routes>
   )
 }
 
