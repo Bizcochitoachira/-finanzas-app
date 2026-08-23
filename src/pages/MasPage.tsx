@@ -20,6 +20,15 @@ function MasPage() {
         <Link to="/transferencias" className="bg-white rounded-2xl shadow-sm p-4 font-medium block">
           Transferencias
         </Link>
+        <Link to="/presupuestos" className="bg-white rounded-2xl shadow-sm p-4 font-medium block">
+          Presupuestos
+        </Link>
+        <Link to="/deudas" className="bg-white rounded-2xl shadow-sm p-4 font-medium block">
+          Deudas
+        </Link>
+        <Link to="/prestamos" className="bg-white rounded-2xl shadow-sm p-4 font-medium block">
+          Préstamos
+        </Link>
       </div>
 
       <button

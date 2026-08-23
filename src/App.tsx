@@ -5,10 +5,13 @@ import AppLayout from './layouts/AppLayout'
 import InicioPage from './pages/InicioPage'
 import MovimientosPage from './pages/MovimientosPage'
 import PresupuestosPage from './pages/PresupuestosPage'
+import MetasPage from './pages/MetasPage'
 import MasPage from './pages/MasPage'
 import CuentasPage from './pages/CuentasPage'
 import CategoriasPage from './pages/CategoriasPage'
 import TransferenciasPage from './pages/TransferenciasPage'
+import DeudasPage from './pages/DeudasPage'
+import PrestamosPage from './pages/PrestamosPage'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 
@@ -43,10 +46,13 @@ function App() {
           <Route path="/" element={<InicioPage />} />
           <Route path="/movimientos" element={<MovimientosPage />} />
           <Route path="/presupuestos" element={<PresupuestosPage />} />
+          <Route path="/metas" element={<MetasPage />} />
           <Route path="/mas" element={<MasPage />} />
           <Route path="/cuentas" element={<CuentasPage />} />
           <Route path="/categorias" element={<CategoriasPage />} />
           <Route path="/transferencias" element={<TransferenciasPage />} />
+          <Route path="/deudas" element={<DeudasPage />} />
+          <Route path="/prestamos" element={<PrestamosPage />} />
         </Route>
       </Routes>
     </AuthProvider>
