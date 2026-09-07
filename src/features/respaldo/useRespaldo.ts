@@ -28,7 +28,7 @@ export function useRespaldo() {
     for (const tabla of TABLAS) {
       const { data, error } = await supabase.from(tabla).select('*')
       if (error) {
-        setError(`No se pudo respaldar la tabla "${tabla}".`)
+        setError(`No se pudo respaldar la tabla "${tabla}": ${error.message}`)
         setExportando(false)
         return
       }
