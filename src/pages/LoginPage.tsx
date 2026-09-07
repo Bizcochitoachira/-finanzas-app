@@ -48,8 +48,12 @@ function LoginPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 mb-6"
+          className="w-full border border-gray-300 rounded-lg px-3 py-2 mb-2"
         />
+
+        <Link to="/olvide-password" className="text-emerald-700 text-xs font-medium block mb-4">
+          ¿Olvidaste tu contraseña?
+        </Link>
 
         <button
           type="submit"
