@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react'
+import { esMesFuturo } from '../../utils/validaciones'
 
 type Props = {
   onCreate: (input: {
@@ -11,11 +12,6 @@ type Props = {
     monto_mensual_esperado: number | null
   }) => Promise<string | null>
   onCancel: () => void
-}
-
-function mesActualYYYYMM() {
-  const hoy = new Date()
-  return `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, '0')}`
 }
 
 function MetaForm({ onCreate, onCancel }: Props) {
@@ -42,7 +38,7 @@ function MetaForm({ onCreate, onCancel }: Props) {
       setError('Ingresa un monto objetivo válido, mayor a cero.')
       return
     }
-    if (mesFin && mesFin < mesActualYYYYMM()) {
+    if (mesFin && !esMesFuturo(mesFin)) {
       setError('La fecha de finalización debe ser un mes futuro.')
       return
     }

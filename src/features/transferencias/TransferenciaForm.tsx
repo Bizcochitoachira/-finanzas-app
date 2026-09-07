@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { useCuentas } from '../cuentas/useCuentas'
+import { useToast } from '../notificaciones/ToastContext'
 
 type Props = {
   onCreate: (
@@ -13,6 +14,7 @@ type Props = {
 
 function TransferenciaForm({ onCreate, onCancel }: Props) {
   const { cuentas } = useCuentas(false)
+  const { mostrarToast } = useToast()
   const [origenId, setOrigenId] = useState('')
   const [destinoId, setDestinoId] = useState('')
   const [monto, setMonto] = useState('')
@@ -42,7 +44,10 @@ function TransferenciaForm({ onCreate, onCancel }: Props) {
     const resultado = await onCreate(origenId, destinoId, montoNumero, fecha)
     setLoading(false)
 
-    if (resultado) setError(resultado)
+    if (resultado) {
+      setError(resultado)
+      mostrarToast(resultado, 'error')
+    }
   }
 
   if (cuentas.length < 2) {

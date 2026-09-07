@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { useCuentas } from '../cuentas/useCuentas'
+import { useToast } from '../notificaciones/ToastContext'
 
 type Props = {
   onAportar: (cuentaId: string, monto: number, fecha: string) => Promise<string | null>
@@ -8,6 +9,7 @@ type Props = {
 
 function AporteForm({ onAportar, onCancel }: Props) {
   const { cuentas } = useCuentas(false)
+  const { mostrarToast } = useToast()
   const [cuentaId, setCuentaId] = useState('')
   const [monto, setMonto] = useState('')
   const [fecha] = useState(() => new Date().toISOString().slice(0, 10))
@@ -32,7 +34,10 @@ function AporteForm({ onAportar, onCancel }: Props) {
     const resultado = await onAportar(cuentaId, montoNumero, fecha)
     setLoading(false)
 
-    if (resultado) setError(resultado)
+    if (resultado) {
+      setError(resultado)
+      mostrarToast(resultado, 'error')
+    }
   }
 
   return (

@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './features/auth/AuthContext'
 import { SettingsProvider } from './features/configuracion/SettingsContext'
+import { ToastProvider } from './features/notificaciones/ToastContext'
 import AppLayout from './layouts/AppLayout'
 import InicioPage from './pages/InicioPage'
 import MovimientosPage from './pages/MovimientosPage'
@@ -37,38 +38,40 @@ function RequireAuth({ children }: { children: ReactNode }) {
 
 function App() {
   return (
-    <AuthProvider>
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/registro" element={<SignupPage />} />
-        <Route path="/olvide-password" element={<OlvidoPasswordPage />} />
-        <Route path="/restablecer-password" element={<RestablecerPasswordPage />} />
+    <ToastProvider>
+      <AuthProvider>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/registro" element={<SignupPage />} />
+          <Route path="/olvide-password" element={<OlvidoPasswordPage />} />
+          <Route path="/restablecer-password" element={<RestablecerPasswordPage />} />
 
-        <Route
-          element={
-            <RequireAuth>
-              <SettingsProvider>
-                <AppLayout />
-              </SettingsProvider>
-            </RequireAuth>
-          }
-        >
-          <Route path="/" element={<InicioPage />} />
-          <Route path="/movimientos" element={<MovimientosPage />} />
-          <Route path="/presupuestos" element={<PresupuestosPage />} />
-          <Route path="/metas" element={<MetasPage />} />
-          <Route path="/mas" element={<MasPage />} />
-          <Route path="/cuentas" element={<CuentasPage />} />
-          <Route path="/categorias" element={<CategoriasPage />} />
-          <Route path="/transferencias" element={<TransferenciasPage />} />
-          <Route path="/deudas" element={<DeudasPage />} />
-          <Route path="/prestamos" element={<PrestamosPage />} />
-          <Route path="/reportes" element={<ReportesPage />} />
-          <Route path="/configuracion" element={<ConfiguracionPage />} />
-          <Route path="/respaldo" element={<RespaldoPage />} />
-        </Route>
-      </Routes>
-    </AuthProvider>
+          <Route
+            element={
+              <RequireAuth>
+                <SettingsProvider>
+                  <AppLayout />
+                </SettingsProvider>
+              </RequireAuth>
+            }
+          >
+            <Route path="/" element={<InicioPage />} />
+            <Route path="/movimientos" element={<MovimientosPage />} />
+            <Route path="/presupuestos" element={<PresupuestosPage />} />
+            <Route path="/metas" element={<MetasPage />} />
+            <Route path="/mas" element={<MasPage />} />
+            <Route path="/cuentas" element={<CuentasPage />} />
+            <Route path="/categorias" element={<CategoriasPage />} />
+            <Route path="/transferencias" element={<TransferenciasPage />} />
+            <Route path="/deudas" element={<DeudasPage />} />
+            <Route path="/prestamos" element={<PrestamosPage />} />
+            <Route path="/reportes" element={<ReportesPage />} />
+            <Route path="/configuracion" element={<ConfiguracionPage />} />
+            <Route path="/respaldo" element={<RespaldoPage />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
+    </ToastProvider>
   )
 }
 

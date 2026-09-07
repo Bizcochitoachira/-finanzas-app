@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { useCuentas } from '../cuentas/useCuentas'
+import { useToast } from '../notificaciones/ToastContext'
 import type { TipoPrestamo } from '../../types/prestamo'
 
 type Props = {
@@ -15,6 +16,7 @@ type Props = {
 
 function PrestamoForm({ onCreate, onCancel }: Props) {
   const { cuentas } = useCuentas(false)
+  const { mostrarToast } = useToast()
   const [tipo, setTipo] = useState<TipoPrestamo>('dado')
   const [persona, setPersona] = useState('')
   const [monto, setMonto] = useState('')
@@ -44,7 +46,11 @@ function PrestamoForm({ onCreate, onCancel }: Props) {
     setLoading(true)
     const resultado = await onCreate(tipo, persona.trim(), montoNumero, cuentaId, fecha)
     setLoading(false)
-    if (resultado) setError(resultado)
+
+    if (resultado) {
+      setError(resultado)
+      mostrarToast(resultado, 'error')
+    }
   }
 
   return (
